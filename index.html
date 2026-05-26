@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashutosh Sharma | Mechanical Design & Simulation Engineer Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fafafa',
+                            100: '#f5f5f5',
+                            200: '#e5e5e5',
+                            300: '#d4d4d4',
+                            400: '#a3a3a3',
+                            500: '#737373',
+                            600: '#525252',
+                            700: '#404040',
+                            800: '#262626',
+                            900: '#171717',
+                            950: '#0a0a0a',
+                        },
+                        accent: {
+                            blue: '#0ea5e9',
+                            emerald: '#10b981',
+                            orange: '#f97316'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- MathJax for rendering LaTeX formulas elegantly -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        /* Custom Blueprint / Engineering Grid Pattern background */
+        .blueprint-bg {
+            background-image: 
+                radial-gradient(circle, rgba(14, 165, 233, 0.08) 1px, transparent 1px),
+                linear-gradient(to right, rgba(229, 231, 235, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(229, 231, 235, 0.05) 1px, transparent 1px);
+            background-size: 24px 24px, 48px 48px, 48px 48px;
+        }
+        .dark .blueprint-bg {
+            background-image: 
+                radial-gradient(circle, rgba(14, 165, 233, 0.1) 1px, transparent 1px),
+                linear-gradient(to right, rgba(30, 41, 59, 0.4) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(30, 41, 59, 0.4) 1px, transparent 1px);
+            background-size: 24px 24px, 48px 48px, 48px 48px;
+        }
+    </style>
+</head>
+<body class="bg-brand-50 text-brand-900 dark:bg-brand-950 dark:text-brand-50 min-h-screen font-mono transition-colors duration-300 antialiased blueprint-bg">
+
+    <!-- NAVIGATION HEADER -->
+    <header class="sticky top-0 z-40 w-full border-b border-brand-200 bg-brand-50/80 backdrop-blur dark:border-brand-900 dark:bg-brand-950/80 transition-colors duration-300">
+        <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center gap-3">
+                <div class="flex h-10 w-10 items-center justify-center border border-brand-900 dark:border-brand-100 font-black text-sm tracking-widest bg-brand-900 dark:bg-brand-100 text-brand-50 dark:text-brand-900 shadow-md">
+                    AS
+                </div>
+                <div>
+                    <span class="font-extrabold tracking-widest text-sm uppercase block">Ashutosh Sharma</span>
+                    <span class="text-[9px] text-brand-500 tracking-wider block">MECHANICAL ENGINEER (EIT) • PEO ONTARIO</span>
+                </div>
+            </div>
+
+            <!-- Sleek Engineering Nav -->
+            <nav class="hidden md:flex items-center gap-8 text-xs font-semibold uppercase tracking-widest">
+                <a href="#case-studies" class="hover:text-accent-blue transition-colors flex items-center gap-1.5">
+                    <span class="inline-block w-2 h-2 rounded-full bg-accent-blue"></span> Case Files
+                </a>
+                <a href="#history" class="hover:text-accent-blue transition-colors">Chronology</a>
+                <a href="#matrices" class="hover:text-accent-blue transition-colors">Specs</a>
+                <a href="#credentials" class="hover:text-accent-blue transition-colors">Credentials</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <button onclick="toggleDarkMode()" class="border border-brand-300 dark:border-brand-800 rounded p-1.5 text-brand-500 hover:bg-brand-100 dark:hover:bg-brand-900 transition-colors" aria-label="Toggle Theme">
+                    <i id="theme-icon-sun" data-lucide="sun" class="w-4 h-4 hidden dark:block"></i>
+                    <i id="theme-icon-moon" data-lucide="moon" class="w-4 h-4 block dark:hidden"></i>
+                </button>
+                <a href="#contact" class="hidden sm:inline-flex border border-brand-900 dark:border-brand-100 px-4 py-1.5 text-xs font-bold uppercase tracking-wider hover:bg-brand-900 hover:text-brand-50 dark:hover:bg-brand-100 dark:hover:text-brand-950 transition-all">
+                    Link Terminal
+                </a>
+                <!-- Mobile nav button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden border border-brand-300 dark:border-brand-800 rounded p-1.5 text-brand-500">
+                    <i data-lucide="menu" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-b border-brand-200 dark:border-brand-900 bg-brand-50 dark:bg-brand-950 px-4 py-4 space-y-3 transition-colors duration-300 text-xs uppercase tracking-widest">
+            <a href="#case-studies" onclick="toggleMobileMenu()" class="block font-medium hover:text-accent-blue py-1">Case Studies</a>
+            <a href="#history" onclick="toggleMobileMenu()" class="block font-medium hover:text-accent-blue py-1">Chronology</a>
+            <a href="#matrices" onclick="toggleMobileMenu()" class="block font-medium hover:text-accent-blue py-1">Specs</a>
+            <a href="#credentials" onclick="toggleMobileMenu()" class="block font-medium hover:text-accent-blue py-1">Credentials</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block font-medium hover:text-accent-blue py-1">Interface</a>
+        </div>
+    </header>
+
+    <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-16 space-y-24 sm:space-y-32">
+
+        <!-- INTRO SECTION (Minimalist, Thanh V Tran Inspired) -->
+        <section id="intro" class="relative pt-4 sm:pt-12">
+            <div class="max-w-4xl space-y-6">
+                <div class="text-xs font-bold uppercase tracking-widest text-brand-500 flex items-center gap-2">
+                    <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    Systems Design, Stress Modeling & CFD Simulations
+                </div>
+                <h1 class="text-4xl sm:text-7xl font-black tracking-tight leading-none text-brand-900 dark:text-brand-100">
+                    Calculating Physics. <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-blue via-emerald-400 to-accent-orange">Simulating Precision.</span>
+                </h1>
+                <p class="text-sm sm:text-base text-brand-600 dark:text-brand-400 leading-relaxed max-w-3xl">
+                    I am <strong class="text-brand-900 dark:text-brand-100 font-extrabold">Ashutosh Sharma</strong>, a Mechanical Engineer (EIT registered with PEO, Ontario) combining rigorous numerical analysis with industrial design expertise. I design thermal fluid conduits, structural load-bearing components, and dynamic system mechanisms backed by structural mathematical models and industry-standard ANSYS / CAD computational pipelines.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <a href="#case-studies" class="border border-brand-900 dark:border-brand-100 bg-brand-900 dark:bg-brand-100 text-brand-50 dark:text-brand-950 px-6 py-3 text-xs font-bold uppercase tracking-widest hover:bg-transparent hover:text-brand-900 dark:hover:bg-transparent dark:hover:text-brand-100 transition-all">
+                        Explore Design Files
+                    </a>
+                    <a href="#contact" class="border border-brand-300 dark:border-brand-800 px-6 py-3 text-xs font-bold uppercase tracking-widest hover:border-brand-900 dark:hover:border-brand-100 transition-all">
+                        Establish Connection
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- HIGH-FIDELITY CASE STUDIES (Thanh V Tran + MIT MechE Comm Kit Inspired) -->
+        <section id="case-studies" class="space-y-12">
+            <div class="space-y-2">
+                <span class="text-xs font-bold uppercase tracking-widest text-accent-blue">Engineering Portfolio</span>
+                <h2 class="text-3xl font-black text-brand-900 dark:text-brand-100 tracking-tight">Technical Case Files</h2>
+                <p class="text-sm text-brand-600 dark:text-brand-400 max-w-2xl">
+                    Detailed breakdowns of my structural, thermodynamic, and material engineering designs.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Case Study 1 -->
+                <div class="border border-brand-200 dark:border-brand-850 bg-brand-100/10 dark:bg-brand-950/20 rounded-xl overflow-hidden hover:shadow-lg transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="bg-brand-900 h-44 flex items-center justify-center text-brand-50 relative overflow-hidden border-b border-brand-200 dark:border-brand-900">
+                            <!-- Custom schematic SVG representing rotor layout -->
+                            <svg class="w-24 h-24 text-accent-blue opacity-50 group-hover:scale-105 transition-transform" viewBox="0 0 100 100">
+                                <circle cx="50" cy="50" r="35" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2,2"/>
+                                <line x1="15" y1="15" x2="85" y2="85" stroke="currentColor" stroke-width="2"/>
+                                <line x1="85" y1="15" x2="15" y2="85" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="15" cy="15" r="8" fill="#171717" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="85" cy="15" r="8" fill="#171717" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="15" cy="85" r="8" fill="#171717" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="85" cy="85" r="8" fill="#171717" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="50" cy="50" r="5" fill="currentColor"/>
+                            </svg>
+                            <span class="absolute top-3 left-3 text-[9px] uppercase font-mono tracking-wider px-2 py-0.5 rounded bg-brand-950/80 border border-brand-800 text-brand-400">EVTOL Design</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h3 class="font-extrabold text-brand-900 dark:text-brand-100 text-sm uppercase tracking-widest">EVTOL Drone Mass Optimization</h3>
+                            <p class="text-xs text-brand-600 dark:text-brand-400 leading-relaxed">
+                                Executed complex CAD restructuring and mass balance calculations of structural carbon components, reducing weight by 15% to expand operational airtime profiles.
+                            </p>
+                            <!-- Physics equation context -->
+                            <div class="bg-brand-100/50 dark:bg-brand-900/30 p-2.5 rounded border border-brand-200 dark:border-brand-800/80 text-[10px] text-brand-500 font-bold font-mono">
+                                Optimization Objective:
+                                $$\min \sum w_i m_i \quad \text{s.t.} \quad \sigma_{max} \le \frac{\sigma_y}{\text{FOS}}$$
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0 mt-4 border-t border-brand-100 dark:border-brand-900 pt-4">
+                        <button onclick="openModal('evtol-modal')" class="text-[10px] font-bold uppercase tracking-wider text-accent-blue flex items-center gap-1.5 hover:underline">
+                            Open Design Files <i data-lucide="folder-open" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Case Study 2 -->
+                <div class="border border-brand-200 dark:border-brand-850 bg-brand-100/10 dark:bg-brand-950/20 rounded-xl overflow-hidden hover:shadow-lg transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="bg-brand-900 h-44 flex items-center justify-center text-brand-50 relative overflow-hidden border-b border-brand-200 dark:border-brand-900">
+                            <!-- Custom schematic SVG representing turbine structure -->
+                            <svg class="w-24 h-24 text-accent-emerald opacity-50 group-hover:scale-105 transition-transform" viewBox="0 0 100 100">
+                                <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M 50,10 Q 50,30 35,40 Q 50,30 50,50" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M 50,90 Q 50,70 65,60 Q 50,70 50,50" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M 10,50 Q 30,50 40,35 Q 30,50 50,50" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M 90,50 Q 70,50 60,65 Q 70,50 50,50" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                <circle cx="50" cy="50" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                            <span class="absolute top-3 left-3 text-[9px] uppercase font-mono tracking-wider px-2 py-0.5 rounded bg-brand-950/80 border border-brand-800 text-brand-400">Turbine Simulation</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h3 class="font-extrabold text-brand-900 dark:text-brand-100 text-sm uppercase tracking-widest">Francis Turbine Runner Mechanics</h3>
+                            <p class="text-xs text-brand-600 dark:text-brand-400 leading-relaxed">
+                                Performed stress concentration studies and fatigue life simulations using ANSYS Mechanical solver under continuous fluid dynamic load states.
+                            </p>
+                            <div class="bg-brand-100/50 dark:bg-brand-900/30 p-2.5 rounded border border-brand-200 dark:border-brand-800/80 text-[10px] text-brand-500 font-bold font-mono">
+                                Boundary Conditions:
+                                $$\boldsymbol{\sigma} = \mathbf{C} : \boldsymbol{\varepsilon} \quad \text{on } \Omega$$
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0 mt-4 border-t border-brand-100 dark:border-brand-900 pt-4">
+                        <button onclick="openModal('turbine-modal')" class="text-[10px] font-bold uppercase tracking-wider text-accent-blue flex items-center gap-1.5 hover:underline">
+                            Open Design Files <i data-lucide="folder-open" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Case Study 3 -->
+                <div class="border border-brand-200 dark:border-brand-850 bg-brand-100/10 dark:bg-brand-950/20 rounded-xl overflow-hidden hover:shadow-lg transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="bg-brand-900 h-44 flex items-center justify-center text-brand-50 relative overflow-hidden border-b border-brand-200 dark:border-brand-900">
+                            <!-- Custom schematic SVG representing MATLAB code plots -->
+                            <svg class="w-24 h-24 text-accent-orange opacity-50 group-hover:scale-105 transition-transform" viewBox="0 0 100 100">
+                                <rect x="15" y="15" width="70" height="70" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M 20,80 L 35,50 L 50,65 L 65,30 L 80,45" fill="none" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="35" cy="50" r="3" fill="currentColor"/>
+                                <circle cx="50" cy="65" r="3" fill="currentColor"/>
+                                <circle cx="65" cy="30" r="3" fill="currentColor"/>
+                            </svg>
+                            <span class="absolute top-3 left-3 text-[9px] uppercase font-mono tracking-wider px-2 py-0.5 rounded bg-brand-950/80 border border-brand-800 text-brand-400">Numerical Solvers</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h3 class="font-extrabold text-brand-900 dark:text-brand-100 text-sm uppercase tracking-widest">Structural MATLAB Solver Suite</h3>
+                            <p class="text-xs text-brand-600 dark:text-brand-400 leading-relaxed">
+                                Scripted customized structural finite element algorithms calculating global stiffness vectors, local deflections, and reaction profiles.
+                            </p>
+                            <div class="bg-brand-100/50 dark:bg-brand-900/30 p-2.5 rounded border border-brand-200 dark:border-brand-800/80 text-[10px] text-brand-500 font-bold font-mono">
+                                Stiffness Synthesis:
+                                $$\mathbf{K}_{global} = \sum \mathbf{T}^T \mathbf{k}_{local} \mathbf{T}$$
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0 mt-4 border-t border-brand-100 dark:border-brand-900 pt-4">
+                        <button onclick="openModal('matlab-modal')" class="text-[10px] font-bold uppercase tracking-wider text-accent-blue flex items-center gap-1.5 hover:underline">
+                            Open Design Files <i data-lucide="folder-open" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROFESSIONAL CHRONOLOGY -->
+        <section id="history" class="space-y-8">
+            <div class="space-y-2">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand-500">Chronological Logs</span>
+                <h2 class="text-3xl font-black text-brand-900 dark:text-brand-100 tracking-tight">Industrial Chronology</h2>
+                <p class="text-sm text-brand-600 dark:text-brand-400 max-w-2xl">
+                    Historical record of corporate engineering engagements, research appointments, and hardware process implementations.
+                </p>
+            </div>
+
+            <div class="border border-brand-200 dark:border-brand-900 rounded-2xl overflow-hidden divide-y divide-brand-200 dark:divide-brand-900 shadow-md">
+                <!-- Entry 1 -->
+                <div class="p-6 bg-brand-100/30 dark:bg-brand-900/10 space-y-4">
+                    <div class="flex flex-wrap items-start justify-between gap-4">
+                        <div>
+                            <h3 class="font-bold text-brand-900 dark:text-brand-100 text-base">Project Intern</h3>
+                            <p class="text-xs text-brand-500">Flowthermolabs — Remote</p>
+                        </div>
+                        <span class="text-[10px] font-bold uppercase tracking-wider bg-brand-200 dark:bg-brand-800 px-3 py-1 text-brand-700 dark:text-brand-300">Jul 2024 — Jul 2025</span>
+                    </div>
+                    <ul class="list-disc list-inside space-y-1.5 text-xs text-brand-600 dark:text-brand-300 leading-relaxed">
+                        <li>Assisted in thermodynamic model validation and packaging space optimization of convective cooling heatsinks for high-density consumer power supplies.</li>
+                        <li>Built parameterized finite volume CFD setups in ANSYS Fluent to analyze surface temperature gradients across multi-PCB enclosures, capturing a 15% heat transfer coefficient elevation.</li>
+                        <li>Cooperated alongside mechanical package engineers to formulate risk assessments, design reviews, and engineering change notices (ECN).</li>
+                    </ul>
+                </div>
+
+                <!-- Entry 2 -->
+                <div class="p-6 bg-brand-100/30 dark:bg-brand-900/10 space-y-4">
+                    <div class="flex flex-wrap items-start justify-between gap-4">
+                        <div>
+                            <h3 class="font-bold text-brand-900 dark:text-brand-100 text-base">Assistant Research Fellow</h3>
+                            <p class="text-xs text-brand-500">Nepal Academy of Science & Technology — Lalitpur, Nepal</p>
+                        </div>
+                        <span class="text-[10px] font-bold uppercase tracking-wider bg-brand-200 dark:bg-brand-800 px-3 py-1 text-brand-700 dark:text-brand-300">Nov 2021 — Nov 2022</span>
+                    </div>
+                    <ul class="list-disc list-inside space-y-1.5 text-xs text-brand-600 dark:text-brand-300 leading-relaxed">
+                        <li>Developed process optimization routines for TiO₂ Sol-Gel ceramic coatings on high-purity glass platforms, achieving a 20% conversion efficiency gains via systematic Design of Experiments (DoE).</li>
+                        <li>Performed microstructural phase investigations using X-ray Diffraction (XRD) and FTIR spectrometry to map mechanical wear and film cohesion interfaces.</li>
+                        <li>Constructed finite element (FEA) structural models of Francis Hydraulic Turbine rotating runners to isolate cyclic shear fractures under high dynamic head pressure bounds.</li>
+                    </ul>
+                </div>
+
+                <!-- Entry 3 -->
+                <div class="p-6 bg-brand-100/30 dark:bg-brand-900/10 space-y-4">
+                    <div class="flex flex-wrap items-start justify-between gap-4">
+                        <div>
+                            <h3 class="font-bold text-brand-900 dark:text-brand-100 text-base">Assistant Mechanical Engineer</h3>
+                            <p class="text-xs text-brand-500">Sufal Pvt. Ltd. — Lalitpur, Nepal</p>
+                        </div>
+                        <span class="text-[10px] font-bold uppercase tracking-wider bg-brand-200 dark:bg-brand-800 px-3 py-1 text-brand-700 dark:text-brand-300">Aug 2020 — Sep 2021</span>
+                    </div>
+                    <ul class="list-disc list-inside space-y-1.5 text-xs text-brand-600 dark:text-brand-300 leading-relaxed">
+                        <li>Supervised complex mechanical installations, pipeline routings, and pump/compressor selections matching rigorous ASME and ISO manufacturing frameworks.</li>
+                        <li>Managed manufacturing quality tracking databases, reducing component dimensional deviations by 20% via continuous statistical process control (SPC).</li>
+                        <li>Compiled Bills of Materials (BOM), component specifications, and mechanical assembly draft drawings in compliance with strict functional tolerancing principles.</li>
+                    </ul>
+                </div>
+
+                <!-- Entry 4 -->
+                <div class="p-6 bg-brand-100/30 dark:bg-brand-900/10 space-y-4">
+                    <div class="flex flex-wrap items-start justify-between gap-4">
+                        <div>
+                            <h3 class="font-bold text-brand-900 dark:text-brand-100 text-base">Project Intern</h3>
+                            <p class="text-xs text-brand-500">Non-Ferrous Materials Technology Development Centre (NFTDC) — Hyderabad, India</p>
+                        </div>
+                        <span class="text-[10px] font-bold uppercase tracking-wider bg-brand-200 dark:bg-brand-800 px-3 py-1 text-brand-700 dark:text-brand-300">Jun 2019 — Jul 2020</span>
+                    </div>
+                    <ul class="list-disc list-inside space-y-1.5 text-xs text-brand-600 dark:text-brand-300 leading-relaxed">
+                        <li>Developed screen printing, plasma glazing, and ink deposition workflows for Solid Oxide Fuel Cell (SOFC) stack fabrication, increasing total power outputs by 25%.</li>
+                        <li>Conducted surface analysis via high-resolution Scanning Electron Microscopy (SEM) and Energy Dispersive Spectroscopy (EDS) to isolate coating delamination failure zones.</li>
+                        <li>Maintained multi-member technical documentation files aligned with critical project milestones and safety protocols.</li>
+                    </ul>
+                </div>
+
+                <!-- Entry 5 -->
+                <div class="p-6 bg-brand-100/30 dark:bg-brand-900/10 space-y-4">
+                    <div class="flex flex-wrap items-start justify-between gap-4">
+                        <div>
+                            <h3 class="font-bold text-brand-900 dark:text-brand-100 text-base">Engineer Trainee</h3>
+                            <p class="text-xs text-brand-500">Sufal Pvt. Ltd. — Lalitpur, Nepal</p>
+                        </div>
+                        <span class="text-[10px] font-bold uppercase tracking-wider bg-brand-200 dark:bg-brand-800 px-3 py-1 text-brand-700 dark:text-brand-300">Aug 2017 — Aug 2018</span>
+                    </div>
+                    <ul class="list-disc list-inside space-y-1.5 text-xs text-brand-600 dark:text-brand-300 leading-relaxed">
+                        <li>Created dynamic toolpaths for 3-axis CNC machining centers using CAD/CAM systems, significantly cutting processing waste and improving cycle efficiency.</li>
+                        <li>Drafted precise cast tooling configurations and mechanical parts models using SolidWorks following ISO 9001 and ISO 13485 medical-hardware standards.</li>
+                        <li>Interpreted pipeline and instrumentation drawings (P&ID), isometric plans, and raw material spec files.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SPECIFICATION MATRICES (Skills) -->
+        <section id="matrices" class="space-y-8">
+            <div class="space-y-2">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand-500">System Specs</span>
+                <h2 class="text-3xl font-black text-brand-900 dark:text-brand-100 tracking-tight">Core Competencies</h2>
+                <p class="text-sm text-brand-600 dark:text-brand-400 max-w-2xl">
+                    Detailed catalog of computational tools, engineering codes, and experimental instrumentation workflows.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- CAD / Modeling -->
+                <div class="border border-brand-200 dark:border-brand-850 bg-brand-100/10 dark:bg-brand-950/20 p-5 rounded-xl space-y-4 shadow-sm hover:border-accent-blue transition-colors">
+                    <div class="flex items-center gap-2 text-accent-blue">
+                        <i data-lucide="pen-tool" class="w-4 h-4"></i>
+                        <h3 class="font-bold text-brand-900 dark:text-brand-100 text-xs uppercase tracking-wider">CAD & Mechanics</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-brand-200 text-brand-800 dark:bg-brand-900 dark:text-brand-200">SolidWorks</span>
+                        <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-brand-200 text-brand-800 dark:bg-brand-900 dark:text-brand-200">Siemens NX</span>
+                        <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-brand-200 text-brand-800 dark:bg-brand-900 dark:text-brand-200">CATIA</span>
+                        <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-brand-200 text-brand-800 dark:bg-brand-900 dark:text-brand-200">GD&T</span>
+                        <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-brand-200 text-brand-800 dark:bg-brand-900 dark:text-brand-200">ASME Y14.5</span>
+                    </div>
+                </div>
+
+                <!-- Simulation -->
+                <div class="border border-brand-200 dark:border-brand-850 bg-brand-100/10 dark:bg-brand-950/20 p-5 rounded-xl space-y-4 shadow-sm hover:border-accent-emerald transition-colors">
+                    <div class="flex items-center gap-2 text-accent-emerald">
+                        <i data-lucide="wind" class="w-4 h-4"></i>
+                        <h3 class="font-bold text-brand-900 dark:text-brand-100 text-xs uppercase tracking-wider">Physics & CAE</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-brand-200 text-brand-800 dark:bg-brand-900 dark:text-brand-200">ANSYS Fluent</span>
+                        <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-brand-200 text-brand-800 dark:bg-brand-900 dark:text-brand-200">ANSYS Mech.</span>
+                        <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-brand-200 text-brand-800 dark:bg-brand-900 dark:text-brand-200">CFD Modeling</span>
+                        <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-brand-200 text-brand-800 dark:bg-brand-900 dark:text-brand-200">Thermal Design</span>
+                        <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-brand-200 text-brand-800 dark:bg-brand-900 dark:text-brand-200">Stress Analysis</span>
+                    </div>
+                </div>
+
+                <!-- Code / Computing -->
+                <div class="border border-brand-200 dark:border-brand-850 bg-brand-100/10 dark:bg-brand-950/20 p-5 rounded-xl space-y-4 shadow-sm hover:border-accent-orange transition-colors">
+                    <div class="flex items-center gap-2 text-accent-orange">
+                        <i data-lucide="terminal" class="w-4 h-4"></i>
+                        <h3 class="font-bold text-brand-900 dark:text-brand-100 text-xs uppercase tracking-wider">Numerical Systems</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-brand-200 text-brand-800 dark:bg-brand-900 dark:text-brand-200">Python</span>
+                        <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-brand-200 text-brand-800 dark:bg-brand-900 dark:text-brand-200">MATLAB</span>
+                        <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-brand-200 text-brand-800 dark:bg-brand-900 dark:text-brand-200">CNC G-Code</span>
+                        <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-brand-200 text-brand-800 dark:bg-brand-900 dark:text-brand-200">CAM Toolpaths</span>
+                        <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-brand-200 text-brand-800 dark:bg-brand-900 dark:text-brand-200">C/C++</span>
+                    </div>
+                </div>
+
+                <!-- Standards & Characterization -->
+                <div class="border border-brand-200 dark:border-brand-850 bg-brand-100/10 dark:bg-brand-950/20 p-5 rounded-xl space-y-4 shadow-sm hover:border-brand-400 transition-colors">
+                    <div class="flex items-center gap-2 text-brand-500">
+                        <i data-lucide="shield-check" class="w-4 h-4"></i>
+                        <h3 class="font-bold text-brand-900 dark:text-brand-100 text-xs uppercase tracking-wider">Codes & Materials</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-brand-200 text-brand-800 dark:bg-brand-900 dark:text-brand-200">CSA N285.0</span>
+                        <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-brand-200 text-brand-800 dark:bg-brand-900 dark:text-brand-200">ASME Sec VIII</span>
+                        <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-brand-200 text-brand-800 dark:bg-brand-900 dark:text-brand-200">SEM Analysis</span>
+                        <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-brand-200 text-brand-800 dark:bg-brand-900 dark:text-brand-200">FTIR / XRD</span>
+                        <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-brand-200 text-brand-800 dark:bg-brand-900 dark:text-brand-200">ISO 9001</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CREDENTIALS & ACADEMICS -->
+        <section id="credentials" class="grid grid-cols-1 lg:grid-cols-2 gap-12 border-t border-brand-200 dark:border-brand-900 pt-16">
+            <!-- Academic Logs -->
+            <div class="space-y-6">
+                <h2 class="text-xl font-extrabold text-brand-900 dark:text-brand-100 tracking-tight uppercase flex items-center gap-2">
+                    <i data-lucide="graduation-cap" class="w-5 h-5 text-accent-blue"></i> Academic Records
+                </h2>
+                <div class="space-y-4">
+                    <!-- Fanshawe -->
+                    <div class="p-4 border border-brand-200 dark:border-brand-800 bg-brand-100/10 dark:bg-brand-900/10 rounded-xl">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-bold text-brand-900 dark:text-brand-100 text-xs uppercase tracking-wider">Post Graduate Certificate (Applied Mechanical Design)</h3>
+                                <p class="text-[11px] text-brand-500">Fanshawe College — London, Ontario, Canada</p>
+                            </div>
+                            <span class="text-[10px] font-mono bg-brand-200 dark:bg-brand-800 px-2 py-0.5 rounded text-brand-700 dark:text-brand-300">2023</span>
+                        </div>
+                    </div>
+
+                    <!-- NIT Warangal -->
+                    <div class="p-4 border border-brand-200 dark:border-brand-800 bg-brand-100/10 dark:bg-brand-900/10 rounded-xl">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-bold text-brand-900 dark:text-brand-100 text-xs uppercase tracking-wider">M.Tech (Materials & System Engineering Design)</h3>
+                                <p class="text-[11px] text-brand-500">National Institute of Technology — Warangal, India</p>
+                            </div>
+                            <span class="text-[10px] font-mono bg-brand-200 dark:bg-brand-800 px-2 py-0.5 rounded text-brand-700 dark:text-brand-300">2020</span>
+                        </div>
+                    </div>
+
+                    <!-- MSRIT -->
+                    <div class="p-4 border border-brand-200 dark:border-brand-800 bg-brand-100/10 dark:bg-brand-900/10 rounded-xl">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-bold text-brand-900 dark:text-brand-100 text-xs uppercase tracking-wider">B.E. (Mechanical Engineering)</h3>
+                                <p class="text-[11px] text-brand-500">M.S. Ramaiah Institute of Technology — Bangalore, India</p>
+                            </div>
+                            <span class="text-[10px] font-mono bg-brand-200 dark:bg-brand-800 px-2 py-0.5 rounded text-brand-700 dark:text-brand-300">2017</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certifications Logs -->
+            <div class="space-y-6">
+                <h2 class="text-xl font-extrabold text-brand-900 dark:text-brand-100 tracking-tight uppercase flex items-center gap-2">
+                    <i data-lucide="award" class="w-5 h-5 text-accent-emerald"></i> Engineering Credentials
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="p-4 border border-brand-200 dark:border-brand-800 bg-brand-100/10 dark:bg-brand-900/10 rounded-xl flex items-start gap-3">
+                        <i data-lucide="shield-check" class="w-5 h-5 text-accent-emerald mt-0.5 flex-shrink-0"></i>
+                        <div>
+                            <h4 class="font-bold text-brand-900 dark:text-brand-100 text-xs uppercase">EIT Ontario (PEO)</h4>
+                            <p class="text-[10px] text-brand-500 leading-normal">Professional Engineers Ontario, Canada</p>
+                        </div>
+                    </div>
+                    <div class="p-4 border border-brand-200 dark:border-brand-800 bg-brand-100/10 dark:bg-brand-900/10 rounded-xl flex items-start gap-3">
+                        <i data-lucide="shield-check" class="w-5 h-5 text-accent-emerald mt-0.5 flex-shrink-0"></i>
+                        <div>
+                            <h4 class="font-bold text-brand-900 dark:text-brand-100 text-xs uppercase">Class A Engineer</h4>
+                            <p class="text-[10px] text-brand-500 leading-normal">Nepal Engineering Council (NEC)</p>
+                        </div>
+                    </div>
+                    <div class="p-4 border border-brand-200 dark:border-brand-800 bg-brand-100/10 dark:bg-brand-900/10 rounded-xl flex items-start gap-3">
+                        <i data-lucide="badge-check" class="w-5 h-5 text-accent-blue mt-0.5 flex-shrink-0"></i>
+                        <div>
+                            <h4 class="font-bold text-brand-900 dark:text-brand-100 text-xs uppercase">Engineering Sim.</h4>
+                            <p class="text-[10px] text-brand-500 leading-normal">Cornell University (CornellX Certificate)</p>
+                        </div>
+                    </div>
+                    <div class="p-4 border border-brand-200 dark:border-brand-800 bg-brand-100/10 dark:bg-brand-900/10 rounded-xl flex items-start gap-3">
+                        <i data-lucide="badge-check" class="w-5 h-5 text-accent-blue mt-0.5 flex-shrink-0"></i>
+                        <div>
+                            <h4 class="font-bold text-brand-900 dark:text-brand-100 text-xs uppercase">Material Mechanics</h4>
+                            <p class="text-[10px] text-brand-500 leading-normal">Georgia Institute of Technology</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT INTERFACE -->
+        <section id="contact" class="grid grid-cols-1 lg:grid-cols-12 gap-12 border-t border-brand-200 dark:border-brand-900 pt-16">
+            <div class="lg:col-span-5 space-y-6">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand-500">System Handshake</span>
+                <h2 class="text-3xl font-black text-brand-900 dark:text-brand-100 tracking-tight">Technical Connection</h2>
+                <p class="text-xs text-brand-600 dark:text-brand-400 leading-relaxed">
+                    Open to technical consultancies, design optimization reviews, or mechanical systems engineering roles across Canada. Use the standard link channels or trigger an on-record inquiry dispatch.
+                </p>
+
+                <div class="space-y-4 font-mono text-xs">
+                    <a href="mailto:ashutosh.sharma2023@gmail.com" class="flex items-center gap-3 text-brand-700 dark:text-brand-300 hover:text-accent-blue transition-colors">
+                        <span class="p-2 border border-brand-300 dark:border-brand-800 rounded bg-brand-100/50 dark:bg-brand-900/40"><i data-lucide="mail" class="w-4 h-4"></i></span>
+                        <span>ashutosh.sharma2023@gmail.com</span>
+                    </a>
+                    <a href="tel:+15196978175" class="flex items-center gap-3 text-brand-700 dark:text-brand-300 hover:text-accent-blue transition-colors">
+                        <span class="p-2 border border-brand-300 dark:border-brand-800 rounded bg-brand-100/50 dark:bg-brand-900/40"><i data-lucide="phone" class="w-4 h-4"></i></span>
+                        <span>+1 (519) 697-8175</span>
+                    </a>
+                    <div class="flex items-center gap-3 text-brand-700 dark:text-brand-300">
+                        <span class="p-2 border border-brand-300 dark:border-brand-800 rounded bg-brand-100/50 dark:bg-brand-900/40"><i data-lucide="map-pin" class="w-4 h-4"></i></span>
+                        <span>London, Ontario, Canada (Open to relocation)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Custom Form -->
+            <div class="lg:col-span-7 bg-brand-100/40 dark:bg-brand-950/20 border border-brand-200 dark:border-brand-900 p-6 sm:p-8 rounded-2xl shadow-inner">
+                <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4 text-xs">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="space-y-1.5">
+                            <label for="form-name" class="font-bold uppercase tracking-wider block">Sender Identifier</label>
+                            <input type="text" id="form-name" placeholder="John Doe, PhD" required class="w-full bg-brand-50 dark:bg-brand-950 border border-brand-300 dark:border-brand-850 rounded px-3 py-2 text-brand-950 dark:text-brand-50 focus:border-accent-blue focus:outline-none">
+                        </div>
+                        <div class="space-y-1.5">
+                            <label for="form-email" class="font-bold uppercase tracking-wider block">Return Route Address</label>
+                            <input type="email" id="form-email" placeholder="example@org.com" required class="w-full bg-brand-50 dark:bg-brand-950 border border-brand-300 dark:border-brand-850 rounded px-3 py-2 text-brand-950 dark:text-brand-50 focus:border-accent-blue focus:outline-none">
+                        </div>
+                    </div>
+                    <div class="space-y-1.5">
+                        <label for="form-subject" class="font-bold uppercase tracking-wider block">Inquiry Type / Subject</label>
+                        <input type="text" id="form-subject" placeholder="Turbine simulation model parameter validation" required class="w-full bg-brand-50 dark:bg-brand-950 border border-brand-300 dark:border-brand-850 rounded px-3 py-2 text-brand-950 dark:text-brand-50 focus:border-accent-blue focus:outline-none">
+                    </div>
+                    <div class="space-y-1.5">
+                        <label for="form-message" class="font-bold uppercase tracking-wider block">Detailed Design Parameters / Context</label>
+                        <textarea id="form-message" rows="4" placeholder="Input specific system boundary configurations, sizing problems, or simulation milestones..." required class="w-full bg-brand-50 dark:bg-brand-950 border border-brand-300 dark:border-brand-850 rounded px-3 py-2 text-brand-950 dark:text-brand-50 focus:border-accent-blue focus:outline-none"></textarea>
+                    </div>
+                    
+                    <button type="submit" id="form-submit-btn" class="w-full inline-flex items-center justify-center gap-2 border border-brand-900 dark:border-brand-100 bg-brand-900 dark:bg-brand-100 text-brand-50 dark:text-brand-950 px-4 py-2.5 font-bold uppercase tracking-widest hover:bg-transparent hover:text-brand-900 dark:hover:bg-transparent dark:hover:text-brand-100 transition-all">
+                        Dispatch Transmission
+                    </button>
+                    
+                    <div id="form-success" class="hidden rounded-lg bg-emerald-500/10 border border-emerald-500/20 p-4 text-emerald-600 dark:text-emerald-400 text-xs mt-2">
+                        <div class="flex items-center gap-2 font-bold mb-1">
+                            <i data-lucide="check-circle" class="w-4 h-4"></i>
+                            <span>Transmission Dispatched successfully!</span>
+                        </div>
+                        <p class="leading-normal">Your connection details were logged. I will verify standard routing parameters and respond shortly.</p>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-brand-200 dark:border-brand-900 bg-brand-100/30 dark:bg-brand-950/40 py-12 text-brand-500 text-[10px] tracking-wider transition-colors duration-300">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-2">
+                <span class="font-bold uppercase text-brand-900 dark:text-brand-100">Ashutosh Sharma</span>
+                <span>© 2026. Hardware validation specs compiled on-record.</span>
+            </div>
+            <div class="flex gap-6 uppercase">
+                <a href="#case-studies" class="hover:underline">Case Files</a>
+                <a href="#history" class="hover:underline">Chronology</a>
+                <a href="#contact" class="hover:underline">Interface</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- DETAILED MODALS -->
+    <!-- Project 1 Modal: EVTOL -->
+    <div id="evtol-modal" class="fixed inset-0 z-50 hidden bg-brand-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-brand-50 dark:bg-brand-950 w-full max-w-2xl rounded-2xl border border-brand-200 dark:border-brand-900 shadow-xl overflow-hidden max-h-[90vh] flex flex-col font-mono text-xs">
+            <div class="p-6 border-b border-brand-200 dark:border-brand-900 flex justify-between items-center bg-brand-100/40 dark:bg-brand-900/20">
+                <h3 class="font-black text-brand-900 dark:text-brand-100 text-sm uppercase tracking-widest">Case Log: EVTOL Drone Mass Optimization</h3>
+                <button onclick="closeModal('evtol-modal')" class="text-brand-500 hover:text-brand-700 dark:hover:text-brand-200"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            <div class="p-6 space-y-4 overflow-y-auto text-brand-600 dark:text-brand-300 leading-relaxed">
+                <div class="grid grid-cols-2 gap-4 bg-brand-100 dark:bg-brand-900/60 p-4 rounded-xl text-[10px] mb-2 border border-brand-200 dark:border-brand-800">
+                    <div>
+                        <strong class="text-brand-900 dark:text-brand-100 uppercase block mb-1">Investigation Range:</strong>
+                        <span>SolidWorks, Mass Reduction, Stress Constraints</span>
+                    </div>
+                    <div>
+                        <strong class="text-brand-900 dark:text-brand-100 uppercase block mb-1">Mathematical Context:</strong>
+                        <span>Iterative Finite Sizing, Shear Modulus Limit</span>
+                    </div>
+                </div>
+                <h4 class="font-bold text-brand-900 dark:text-brand-100 uppercase tracking-wide">Problem Scope & Criteria</h4>
+                <p>
+                    Unloaded vehicle structural weight represents the single largest bottleneck to long-duration EVTOL flight windows. Our goal was optimizing localized structural geometries across the arm brackets and motor support linkages to offset extreme vertical flight forces.
+                </p>
+                <h4 class="font-bold text-brand-900 dark:text-brand-100 uppercase tracking-wide">Prototyping Process & Iterations</h4>
+                <p>
+                    Utilizing parametric carbon fiber composites within SolidWorks, we mapped displacement tensors across simulated hover configurations. Fillet profiles were systematically adjusted until geometric stress spikes resolved, preserving a 2.5 Safety Factor profile.
+                </p>
+                <h4 class="font-bold text-brand-900 dark:text-brand-100 uppercase tracking-wide">Calculated Results</h4>
+                <ul class="list-disc list-inside space-y-1 text-brand-700 dark:text-brand-200">
+                    <li>Achieved a direct 15% drop in dead load mass parameters.</li>
+                    <li>Extended continuous simulated hover times by 10%.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project 2 Modal: Turbine runner -->
+    <div id="turbine-modal" class="fixed inset-0 z-50 hidden bg-brand-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-brand-50 dark:bg-brand-950 w-full max-w-2xl rounded-2xl border border-brand-200 dark:border-brand-900 shadow-xl overflow-hidden max-h-[90vh] flex flex-col font-mono text-xs">
+            <div class="p-6 border-b border-brand-200 dark:border-brand-900 flex justify-between items-center bg-brand-100/40 dark:bg-brand-900/20">
+                <h3 class="font-black text-brand-900 dark:text-brand-100 text-sm uppercase tracking-widest">Case Log: Francis Turbine Component Fatigue</h3>
+                <button onclick="closeModal('turbine-modal')" class="text-brand-500 hover:text-brand-700 dark:hover:text-brand-200"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            <div class="p-6 space-y-4 overflow-y-auto text-brand-600 dark:text-brand-300 leading-relaxed">
+                <div class="grid grid-cols-2 gap-4 bg-brand-100 dark:bg-brand-900/60 p-4 rounded-xl text-[10px] mb-2 border border-brand-200 dark:border-brand-800">
+                    <div>
+                        <strong class="text-brand-900 dark:text-brand-100 uppercase block mb-1">Investigation Range:</strong>
+                        <span>FEM Analysis, Dynamic Pressure Fields</span>
+                    </div>
+                    <div>
+                        <strong class="text-brand-900 dark:text-brand-100 uppercase block mb-1">Software Framework:</strong>
+                        <span>ANSYS Mechanical, SolidWorks FEA</span>
+                    </div>
+                </div>
+                <h4 class="font-bold text-brand-900 dark:text-brand-100 uppercase tracking-wide">Problem Scope & Criteria</h4>
+                <p>
+                    Francis hydro-turbines encounter volatile dynamic pressure drops across operating rotor surfaces, inducing extreme multi-axial structural fatigue. This investigation aimed to isolate localized stress regions prone to micro-cracking propagation.
+                </p>
+                <h4 class="font-bold text-brand-900 dark:text-brand-100 uppercase tracking-wide">Simulation & Iterations</h4>
+                <p>
+                    Applying fluid pressure results as localized surface boundary forces, we constructed multi-node solid meshes in ANSYS. Evaluated critical dynamic regions, tracking fillet modifications to smooth load transfer paths.
+                </p>
+                <h4 class="font-bold text-brand-900 dark:text-brand-100 uppercase tracking-wide">Calculated Results</h4>
+                <ul class="list-disc list-inside space-y-1 text-brand-700 dark:text-brand-200">
+                    <li>Isolated extreme fatigue stress spots at blade root fillets, reducing fatigue risk.</li>
+                    <li>Raised dynamic mesh convergence precision metrics by 30%.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project 3 Modal: MATLAB FEA -->
+    <div id="matlab-modal" class="fixed inset-0 z-50 hidden bg-brand-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-brand-50 dark:bg-brand-950 w-full max-w-2xl rounded-2xl border border-brand-200 dark:border-brand-900 shadow-xl overflow-hidden max-h-[90vh] flex flex-col font-mono text-xs">
+            <div class="p-6 border-b border-brand-200 dark:border-brand-900 flex justify-between items-center bg-brand-100/40 dark:bg-brand-900/20">
+                <h3 class="font-black text-brand-900 dark:text-brand-100 text-sm uppercase tracking-widest">Case Log: Structural MATLAB Solver Suite</h3>
+                <button onclick="closeModal('matlab-modal')" class="text-brand-500 hover:text-brand-700 dark:hover:text-brand-200"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            <div class="p-6 space-y-4 overflow-y-auto text-brand-600 dark:text-brand-300 leading-relaxed">
+                <div class="grid grid-cols-2 gap-4 bg-brand-100 dark:bg-brand-900/60 p-4 rounded-xl text-[10px] mb-2 border border-brand-200 dark:border-brand-800">
+                    <div>
+                        <strong class="text-brand-900 dark:text-brand-100 uppercase block mb-1">Investigation Range:</strong>
+                        <span>Programmatic Math Solvers, Stiffness Matrices</span>
+                    </div>
+                    <div>
+                        <strong class="text-brand-900 dark:text-brand-100 uppercase block mb-1">Computing Core:</strong>
+                        <span>MATLAB Computation Systems</span>
+                    </div>
+                </div>
+                <h4 class="font-bold text-brand-900 dark:text-brand-100 uppercase tracking-wide">Problem Scope & Criteria</h4>
+                <p>
+                    Commercial graphic interface solvers are frequently over-dimensioned for initial feasibility mechanical studies. We sought to build a programmatic, command-line framework to evaluate 2D trusses and beams directly via stiffness equations.
+                </p>
+                <h4 class="font-bold text-brand-900 dark:text-brand-100 uppercase tracking-wide">Numerical Formulation</h4>
+                <p>
+                    The script maps global matrix boundaries by tracking coordinate nodals and member parameters, calculating global displacements under loads directly:
+                    $$\mathbf{F} = \mathbf{K} \mathbf{U}$$
+                </p>
+                <h4 class="font-bold text-brand-900 dark:text-brand-100 uppercase tracking-wide">Calculated Results</h4>
+                <ul class="list-disc list-inside space-y-1 text-brand-700 dark:text-brand-200">
+                    <li>Bypassed commercial visual solver overhead, obtaining 100% calculation accuracy for planar trusses.</li>
+                    <li>Saves localized stiffness computation and displacement mapping times by 15%.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- GLOBAL INTERACTION SCRIPT -->
+    <script>
+        // Init Lucide Icons
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+
+        // Dark/Light Theme Handler
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Apply saved theme on initial load
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.documentElement.classList.remove('dark');
+        } else {
+            document.documentElement.classList.add('dark');
+        }
+
+        // Toggle Mobile Navigation
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Handle Interactive Connection Form Submit
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const btn = document.getElementById('form-submit-btn');
+            const successMsg = document.getElementById('form-success');
+            
+            btn.innerHTML = 'DISPATCHING INTERFACE LINK...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.innerHTML = 'DISPATCH COMPLETED';
+                btn.classList.remove('bg-brand-900', 'dark:bg-brand-100');
+                btn.classList.add('bg-emerald-600', 'text-white');
+                successMsg.classList.remove('hidden');
+                
+                // Clear fields
+                document.getElementById('form-name').value = '';
+                document.getElementById('form-email').value = '';
+                document.getElementById('form-subject').value = '';
+                document.getElementById('form-message').value = '';
+            }, 1000);
+        }
+
+        // Modals control
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                document.querySelectorAll('.fixed').forEach(modal => {
+                    modal.classList.add('hidden');
+                });
+                document.body.classList.remove('overflow-hidden');
+            }
+        });
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+        }
+    </script>
+</body>
+</html>
