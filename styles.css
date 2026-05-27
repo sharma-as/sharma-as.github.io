@@ -1,0 +1,24 @@
+:root {
+  color-scheme: dark;
+}
+
+/* Custom Blueprint / Engineering Grid Pattern background */
+.blueprint-bg {
+  background-image:
+    radial-gradient(circle, rgba(14, 165, 233, 0.08) 1px, transparent 1px),
+    linear-gradient(to right, rgba(229, 231, 235, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(229, 231, 235, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px, 48px 48px, 48px 48px;
+}
+
+html.dark .blueprint-bg {
+  background-image:
+    radial-gradient(circle, rgba(14, 165, 233, 0.1) 1px, transparent 1px),
+    linear-gradient(to right, rgba(30, 41, 59, 0.4) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(30, 41, 59, 0.4) 1px, transparent 1px);
+  background-size: 24px 24px, 48px 48px, 48px 48px;
+}
+
+html {
+  scroll-behavior: smooth;
+}

@@ -40,23 +40,7 @@
     <!-- MathJax for rendering LaTeX formulas elegantly -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <style>
-        /* Custom Blueprint / Engineering Grid Pattern background */
-        .blueprint-bg {
-            background-image: 
-                radial-gradient(circle, rgba(14, 165, 233, 0.08) 1px, transparent 1px),
-                linear-gradient(to right, rgba(229, 231, 235, 0.05) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(229, 231, 235, 0.05) 1px, transparent 1px);
-            background-size: 24px 24px, 48px 48px, 48px 48px;
-        }
-        .dark .blueprint-bg {
-            background-image: 
-                radial-gradient(circle, rgba(14, 165, 233, 0.1) 1px, transparent 1px),
-                linear-gradient(to right, rgba(30, 41, 59, 0.4) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(30, 41, 59, 0.4) 1px, transparent 1px);
-            background-size: 24px 24px, 48px 48px, 48px 48px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body class="bg-brand-50 text-brand-900 dark:bg-brand-950 dark:text-brand-50 min-h-screen font-mono transition-colors duration-300 antialiased blueprint-bg">
 
@@ -681,81 +665,6 @@
         </div>
     </div>
 
-    <!-- GLOBAL INTERACTION SCRIPT -->
-    <script>
-        // Init Lucide Icons
-        document.addEventListener('DOMContentLoaded', () => {
-            lucide.createIcons();
-        });
-
-        // Dark/Light Theme Handler
-        function toggleDarkMode() {
-            const html = document.documentElement;
-            if (html.classList.contains('dark')) {
-                html.classList.remove('dark');
-                localStorage.setItem('theme', 'light');
-            } else {
-                html.classList.add('dark');
-                localStorage.setItem('theme', 'dark');
-            }
-        }
-
-        // Apply saved theme on initial load
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light') {
-            document.documentElement.classList.remove('dark');
-        } else {
-            document.documentElement.classList.add('dark');
-        }
-
-        // Toggle Mobile Navigation
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        }
-
-        // Handle Interactive Connection Form Submit
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            const btn = document.getElementById('form-submit-btn');
-            const successMsg = document.getElementById('form-success');
-            
-            btn.innerHTML = 'DISPATCHING INTERFACE LINK...';
-            btn.disabled = true;
-
-            setTimeout(() => {
-                btn.innerHTML = 'DISPATCH COMPLETED';
-                btn.classList.remove('bg-brand-900', 'dark:bg-brand-100');
-                btn.classList.add('bg-emerald-600', 'text-white');
-                successMsg.classList.remove('hidden');
-                
-                // Clear fields
-                document.getElementById('form-name').value = '';
-                document.getElementById('form-email').value = '';
-                document.getElementById('form-subject').value = '';
-                document.getElementById('form-message').value = '';
-            }, 1000);
-        }
-
-        // Modals control
-        function openModal(modalId) {
-            document.getElementById(modalId).classList.remove('hidden');
-            document.body.classList.add('overflow-hidden');
-        }
-
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape') {
-                document.querySelectorAll('.fixed').forEach(modal => {
-                    modal.classList.add('hidden');
-                });
-                document.body.classList.remove('overflow-hidden');
-            }
-        });
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.add('hidden');
-            document.body.classList.remove('overflow-hidden');
-        }
-    </script>
+    <script src="script.js" defer></script>
 </body>
 </html>
